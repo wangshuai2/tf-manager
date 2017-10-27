@@ -20,17 +20,53 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {
-    const isLogin = sessionStorage.getItem('isLogin');
-    if (isLogin) {
-      next();
-    } else {
-      next({
-        path: '/',
-        query: {
-          redirect: to.fullPath
+    let xmlhttprequst = new XMLHttpRequest();
+    xmlhttprequst.onreadystatechange = callback;
+    xmlhttprequst.open("GET", '/isLogin.json', true);
+    xmlhttprequst.send();
+
+    function callback() {
+      if(xmlhttprequst.readyState == 4) {
+        if(xmlhttprequst.status == 200) {
+          const message = JSON.parse(xmlhttprequst.responseText);
+          if(message.code == 200) {
+            next();
+          }else{
+            next({
+              path: '/login',
+              query: {
+                redirect: to.fullPath
+              }
+            })
+          }
         }
-      })
+      }
     }
+
+
+    // this.$http.get('/isLogin.json').then(response => {
+    //   if (response.body.code == 200) {
+    //     next();
+    //   } else {
+    //     next({
+    //       path: '/',
+    //       query: {
+    //         redirect: to.fullPath
+    //       }
+    //     })
+    //   }
+    // })
+    // const isLogin = sessionStorage.getItem('isLogin');
+    // if (isLogin) {
+    //   next();
+    // } else {
+    //   next({
+    //     path: '/',
+    //     query: {
+    //       redirect: to.fullPath
+    //     }
+    //   })
+    // }
   } else {
     next();
   }

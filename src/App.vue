@@ -198,6 +198,9 @@ input[type="date"] {
     line-height: 23px;
     padding: 0 9px;
 }
+.list-page .pager-wrapper a {
+    cursor: pointer;
+}
 .list-page .pager-jump .jump-input {
     width: 30px;
     height: 23px;

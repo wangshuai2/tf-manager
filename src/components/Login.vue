@@ -37,13 +37,10 @@ export default {
     },
     methods: {
         loginBtn: function() {
-            console.log(this.loginName);
-            console.log(this.loginPwd);
             this.$http.post('/login.json', {userName: this.loginName, password: this.loginPwd}).then(response => {
             // this.$http.get('/login.json?userName=' + this.loginName + '&password=' + this.loginPwd).then(response => {
                 const body = response.body;
                 if(body.code == 200) {
-                    console.log(body);
                     // this.$store.commit('loginStatus', true);
                     // this.$store.commit('userStatus', body.detail);
                     sessionStorage.setItem('isLogin', true);

@@ -4,6 +4,7 @@
             <div class="logo">
                 天赋音乐管理后台
             </div>
+            <a href="javascript:void(0)" @click="logOut">退出登录</a>
         </div>
         <div class="sidebar">
             <div>
@@ -50,7 +51,11 @@
 
 <script>
 export default {
-  
+  methods: {
+      logOut: function() {
+          
+      }
+  }
 }
 </script>
 

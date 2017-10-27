@@ -25,7 +25,7 @@ import ClassEdit from '../components/class/Class-edit'
 
 export default [
     {
-        path: '/',
+        path: '/login',
         name: 'Login',
         component: Login
     },
@@ -172,19 +172,22 @@ export default [
             requireAuth: true
         }
     },
-
-
-    {
-        path: '/hello',
-        name: 'Hello',
-        component: HelloWorld
-    },
+    
+    
+        {
+            path: '/',
+            name: 'Hello',
+            component: HelloWorld,
+            meta: {
+                requireAuth: true
+            }
+        },
     {
         path: '/test',
         name: 'Test',
+        component: Test,
         meta: {
             requireAuth: true
-        },
-        component: Test
+        }
     }
 ]

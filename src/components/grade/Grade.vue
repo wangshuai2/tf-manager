@@ -58,10 +58,10 @@ export default {
         delData: function(id) {
             const r = confirm('确定要删除这条记录吗？');
             if(r) {
-                this.$http.post('/grade/delGrade.json', {gid: id}).then(response => {
+                this.$http.get('/grade/delGrade.json?gid=' + id).then(response => {
                     const body = response.body;
                     if(body.code == 200) {
-                        this.$router.push({path: '/grade'});
+                        this.$router.go(0);
                     }
                 })
             }else{

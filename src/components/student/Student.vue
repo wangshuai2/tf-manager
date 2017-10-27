@@ -18,6 +18,7 @@
                     <td>手机号/帐号</td>
                     <td>性别</td>
                     <td>就读学校</td>
+                    <td>年级班级</td>
                     <td>操作</td>
                 </tr>
             </thead>
@@ -27,7 +28,8 @@
                     <td>{{item.name}}</td>
                     <td>{{item.phone}}</td>
                     <td>{{item.gender == 1 ? '男' : '女'}}</td>
-                    <td>{{item.school}}</td>
+                    <td>{{item.schoolName}}</td>
+                    <td>{{item.className}}</td>
                     <td>
                         <router-link :to="{name: 'EditStudent', params: {id: item.id}}">编辑</router-link>
                         <a href="javascript:void(0)" @click="delData(item.id)">删除</a>
@@ -90,9 +92,9 @@ export default {
             if(this.schoolId != 0) {
                 this.page = 1;
                 let url = '/student/stuList.json?pageNo=1&sid=' + this.schoolId;
-                if(this.teacherStatus != 0) {
-                    url += ('&state=' + this.teacherStatus);
-                }
+                // if(this.teacherStatus != 0) {
+                //     url += ('&state=' + this.teacherStatus);
+                // }
                 this.$http.get(url).then(response => {
                     const body = response.body;
                     if(body.code == 200) {

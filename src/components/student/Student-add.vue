@@ -27,11 +27,21 @@
             </div>
             <div class="form-group">
                 <label for="studentAddress">地址</label>
-                <input type="number" id="studentAddress" v-model="sAddress" placeholder="请输入地址">
+                <input type="text" id="studentAddress" v-model="sAddress" placeholder="请输入地址">
             </div>
             <div class="form-group">
-                <label for="classId"><code>*</code>所在班级</label>
+                <label for="classId"><code>*</code>所在学校</label>
+                <select id="classId" v-model="schoolId" @change="getClassBySchoolId">
+                    <option value="0">请选择学校</option>
+                    <option v-for="school in schoolList" :key="school.id" :value="school.id">{{school.name}}</option>
+                </select>
+                <span>{{smerr}}</span>
+            </div>
+            <div class="form-group">
+                <label for="classId"><code>*</code>所在年级班级</label>
                 <select id="classId" v-model="cId">
+                    <option value="0">请选择年级班级</option>
+                    <option v-for="c in classList" :key="c.id" :value="c.id">{{c.className}}</option>
                 </select>
             </div>
             <div class="form-group">
@@ -51,55 +61,85 @@
 export default {
     data() {
         return {
+            schoolList: [],
+            classList: [],
+            schoolId: '0',
+            classId: '0',
             sName: '',
             sPhone: '',
             sGender: 1,
             sAge: '',
             sAddress: '',
-            cId: '',
+            cId: '0',
             eTime: '',
             snerr: '',
+            smerr: '',
             sperr: '',
             err: ''
         }
-    },
-    mounted: function() {
-        const date = new Date();
-        this.eTime = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString();
     },
     methods: {
         cancelBtn: function() {
             this.$router.back();
         },
         submitBtn: function() {
-            const name = this.sName;
-            const type = this.sType;
-            const stime = this.sTime;
-            const etime = this.eTime;
-            if(name == '') {
+            if(this.Sname == '') {
                 this.snerr = '学生姓名不能为空！';
                 return false;
             } else {
                 this.snerr = '';
             }
+            if(this.sPhone == '') {
+                this.sperr = '学生手机号/帐号不能为空！';
+                return false;
+            } else {
+                this.sperr = '';
+            }
 
-            this.$http.post('/school/addSchool.json', {schoolName: name, courseType: type, startTime: stime, endTime: etime}).then(response => {
+            const data = {
+                stuName: this.sName,
+                phone: this.sPhone,
+                gender: this.sGender,
+                age: this.sAge,
+                address: this.sAddress,
+                classId: this.cId,
+                entranceTime: this.eTime
+            }
+
+            this.$http.post('/student/addStu.json', data, {emulateJSON: false}).then(response => {
                 const body = response.body;
                 if(body.code == 200) {
-                    this.sName = '';
-                    this.sType = 1;
-                    this.sTime =  '';
-                    this.eTime =  '';
-                    this.snerr =  '';
-                    this.err =  '';
-                    this.$router.push({path: '/school'});
+                    this.$router.push({path: '/student'});
                 } else {
                     this.err = body.description;
                 }
             }, response => {
                 this.err = '网络链接错误，请稍候重试。'
             })
+        },
+        getClassBySchoolId: function() {
+            this.$http.get('/class/findGradeClass.json?sid=' + this.schoolId).then(response => {
+                const body = response.body;
+                if(body.code == 200) {
+                    this.classList = body.detail;
+                }
+            })
         }
+    },
+    mounted: function() {
+        const date = new Date();
+        this.eTime = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString();
+        
+        this.$http.get('/school/schools.json').then(response => {
+            const body = response.body;
+            if(body.code == 200) {
+                this.schoolList = body.detail;
+            }else{
+                this.smerr = '学校信息获取失败，请刷新重试'
+            }
+        }, response => {
+            this.smerr = '网络链接错误，请刷新重试'
+        })
     }
 }
 </script>

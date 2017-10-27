@@ -65,7 +65,7 @@ export default {
                 this.snerr = '';
             }
 
-            this.$http.post('/school/addSchool.json', {schoolName: name, courseType: type, startTime: stime, endTime: etime}).then(response => {
+            this.$http.post('/school/addSchool.json', {schoolName: name, courseType: type, startTime: stime, endTime: etime}, {emulateJSON: false}).then(response => {
                 const body = response.body;
                 if(body.code == 200) {
                     this.sName = '';

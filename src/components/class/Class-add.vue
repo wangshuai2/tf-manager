@@ -16,7 +16,7 @@
                 <label for="gradeId"><code>*</code>所在年级</label>
                 <select id="gradeId" v-model="gradeId">
                     <option value="0">选择年级</option>
-                    <option v-for="grade in gradeList" :key="grade.id" :value="grade.id">{{grade.className}}</option>
+                    <option v-for="grade in gradeList" :key="grade.id" :value="grade.id">{{grade.name}}</option>
                 </select>
                 <span>{{gnerr}}</span>
             </div>
@@ -85,7 +85,7 @@ export default {
                     this.gnerr =  '';
                     this.cnerr =  '';
                     this.err =  '';
-                    this.$router.push({path: '/grade'});
+                    this.$router.push({path: '/class'});
                 } else {
                     this.err = body.description;
                 }
@@ -95,7 +95,7 @@ export default {
         },
         getGradeBySchoolId: function() {
             if(this.schoolId != 0) {
-                this.$http.get('/class/findGradeClass.json?sid=' + this.schoolId).then(response => {
+                this.$http.get('/grade/findGradesBySid.json?sid=' + this.schoolId).then(response => {
                     const body = response.body;
                     if(body.code == 200) {
                         this.gradeList = body.detail;

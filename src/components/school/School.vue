@@ -48,10 +48,10 @@ export default {
         delData: function(id) {
             const r = confirm('确定要删除这条记录吗？');
             if(r) {
-                this.$http.post('/school/delSchool.json', {sid: id}).then(response => {
+                this.$http.get('/school/delSchool.json?sid=' + id).then(response => {
                     const body = response.body;
                     if(body.code == 200) {
-                        this.$router.push({path: '/school'});
+                        this.$router.go(0);
                     }
                 })
             }else{
