@@ -3,19 +3,19 @@
         <div class="login-cont">
             <div class="logo">天赋音乐管理后台</div>
             <form>
-                <div class="form-group">
+                <div class="form-item">
                     <label for="loginName">用户名</label>
                     <input type="text" id="loginName" placeholder="请输入用户名" v-model="loginName">
                 </div>
-                <div class="form-group">
+                <div class="form-item">
                     <label for="loginPwd">密码</label>
                     <input type="password" id="loginPwd" placeholder="请输入密码" v-model="loginPwd" @keypress.enter="loginBtn">
                 </div>
-                <div class="form-group">
+                <div class="form-item">
                     <button type="button" class="form-btn" @click="loginBtn">登录</button>
                 </div>
             </form>
-            <a href="/#/test">go test</a>
+            <!-- <a href="/#/test">go test</a> -->
         </div>
     </div>
 </template>
@@ -37,8 +37,10 @@ export default {
     },
     methods: {
         loginBtn: function() {
+            console.log(this.loginName);
+            console.log(this.loginPwd);
             this.$http.post('/login.json', {userName: this.loginName, password: this.loginPwd}).then(response => {
-                console.log('success');
+            // this.$http.get('/login.json?userName=' + this.loginName + '&password=' + this.loginPwd).then(response => {
                 const body = response.body;
                 if(body.code == 200) {
                     console.log(body);
@@ -48,7 +50,7 @@ export default {
                     sessionStorage.setItem('user', JSON.stringify(body.detail));
                     this.loginName = '';
                     this.loginPwd = '';
-                    // this.$router.push({ path: 'main' })
+                    this.$router.push({ name: 'School' });
                 }
             }, response => {
                 console.log('error');
@@ -61,13 +63,16 @@ export default {
 
 
 <style scoped>
+    
     .login {
         width: 100%;
         height: 100%;
         background: url('../assets/1508912127240-1.jpg') no-repeat center center;
         background-size: cover;
         position: fixed;
-        z-index: 1;
+        top: 0;
+        left: 0;
+        z-index: 10;
     }
     .login-cont {
         width: 500px;
@@ -92,20 +97,20 @@ export default {
         margin-bottom: 40px;
     }
 
-    .form-group {
+    .form-item {
         width: 325px;
         margin: 0 auto;
         height: 40px;
         margin-bottom: 20px;
     }
 
-    .form-group::before, .form-group::after {
+    .form-item::before, .form-item::after {
         content: ' ';
         display: block;
         clear: both;
     }
 
-    .form-group label {
+    .form-item label {
         width: 75px;
         height: 40px;
         float: left;
@@ -113,7 +118,7 @@ export default {
         font-size: 16px;
         text-align: center;
     }
-    .form-group input {
+    .form-item input {
         width: 200px;
         height: 38px;
         padding: 0 15px;
@@ -123,7 +128,7 @@ export default {
         font-size: 16px;
         outline: none;
     }
-    .form-group button {
+    .form-item button {
         width: 290px;
         height: 40px;
         display: block;
@@ -136,10 +141,10 @@ export default {
         cursor: pointer;
         outline: none;
     }
-    .form-group button:hover {
+    .form-item button:hover {
         background: #facc62;
     }
-    .form-group button:active {
+    .form-item button:active {
         background: #e2a10a;
     }
 </style>

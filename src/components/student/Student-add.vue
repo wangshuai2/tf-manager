@@ -1,27 +1,42 @@
 <template>
     <div class="data-add">
         <div class="form-title">
-            <h3>添加学校</h3>
+            <h3>添加学生</h3>
         </div>
         <form class="data-form">
             <div class="form-group">
-                <label for="schoolName"><code>*</code>学校名称</label>
-                <input type="text" id="schoolName" v-model="sName" placeholder="请输入学校名称">
+                <label for="studentName"><code>*</code>学生姓名</label>
+                <input type="text" id="studentName" v-model="sName" placeholder="请输入学生姓名">
                 <span>{{snerr}}</span>
             </div>
             <div class="form-group">
-                <label for="schoolType"><code>*</code>课程类型</label>
-                <select id="schoolType" v-model="sType">
-                    <option value="1">小学</option>
+                <label for="studentPhone"><code>*</code>手机号/帐号</label>
+                <input type="number" id="studentPhone" v-model="sPhone" placeholder="请输入学生的手机号/帐号">
+                <span>{{sperr}}</span>
+            </div>
+            <div class="form-group">
+                <label for="studentGender">性别</label>
+                <select id="studentGender" v-model="sGender">
+                    <option value="1">男</option>
+                    <option value="2">女</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="startTime"><code>*</code>学校名称</label>
-                <input type="date" id="startTime" v-model="sTime">
+                <label for="studentAge">年龄</label>
+                <input type="number" id="studentAge" v-model="sAge" placeholder="请输入学生年龄">
             </div>
             <div class="form-group">
-                <label for="endTime"><code>*</code>学校名称</label>
-                <input type="date" id="endTime" v-model="eTime">
+                <label for="studentAddress">地址</label>
+                <input type="number" id="studentAddress" v-model="sAddress" placeholder="请输入地址">
+            </div>
+            <div class="form-group">
+                <label for="classId"><code>*</code>所在班级</label>
+                <select id="classId" v-model="cId">
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="entranceTime">入学时间</label>
+                <input type="date" id="entranceTime" v-model="eTime">
             </div>
             <div class="form-group">
                 <button type="button" @click="cancelBtn" class="btn-cancel">取消</button>
@@ -37,17 +52,20 @@ export default {
     data() {
         return {
             sName: '',
-            sType: 1,
-            sTime: '',
+            sPhone: '',
+            sGender: 1,
+            sAge: '',
+            sAddress: '',
+            cId: '',
             eTime: '',
             snerr: '',
+            sperr: '',
             err: ''
         }
     },
     mounted: function() {
         const date = new Date();
-        this.sTime = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString();
-        this.eTime = (date.getFullYear() + 1).toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString();
+        this.eTime = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString() + '-' + date.getDate().toString();
     },
     methods: {
         cancelBtn: function() {
@@ -59,7 +77,7 @@ export default {
             const stime = this.sTime;
             const etime = this.eTime;
             if(name == '') {
-                this.snerr = '学校名称不能为空！';
+                this.snerr = '学生姓名不能为空！';
                 return false;
             } else {
                 this.snerr = '';

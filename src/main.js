@@ -12,6 +12,7 @@ Vue.use(VueResource)
 Vue.use(Router)
 
 Vue.config.productionTip = false
+Vue.http.options.emulateJSON = true;
 
 const router = new Router({
   routes
