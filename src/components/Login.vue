@@ -47,7 +47,7 @@ export default {
                     sessionStorage.setItem('user', JSON.stringify(body.detail));
                     this.loginName = '';
                     this.loginPwd = '';
-                    this.$router.push({ name: 'School' });
+                    this.$router.push({ path: this.$route.query.redirect ? this.$route.query.redirect : '/'});
                 }
             }, response => {
                 console.log('error');

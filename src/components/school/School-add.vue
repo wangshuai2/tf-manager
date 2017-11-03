@@ -16,11 +16,11 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="startTime"><code>*</code>学校名称</label>
+                <label for="startTime"><code>*</code>服务开始时间</label>
                 <input type="date" id="startTime" v-model="sTime">
             </div>
             <div class="form-group">
-                <label for="endTime"><code>*</code>学校名称</label>
+                <label for="endTime"><code>*</code>服务结束时间</label>
                 <input type="date" id="endTime" v-model="eTime">
             </div>
             <div class="form-group">

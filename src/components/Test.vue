@@ -1,15 +1,15 @@
 <template>
   <div>
-      {{user.userName}}
+      <h1>{{url}}</h1>
   </div>
 </template>
 
 
 <script>
 export default {
-    computed: {
-        user() {
-            return JSON.parse(sessionStorage.getItem('user'))
+    data() {
+        return {
+            url: this.$route.fullPath.indexOf('/test1')
         }
     }
 }

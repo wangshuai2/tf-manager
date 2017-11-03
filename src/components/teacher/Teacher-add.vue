@@ -27,7 +27,7 @@
             </div>
             <div class="form-group">
                 <label for="teacherAddress">地址</label>
-                <input type="number" id="teacherAddress" v-model="tAddress" placeholder="请输入地址">
+                <input type="text" id="teacherAddress" v-model="tAddress" placeholder="请输入地址">
             </div>
             <div class="form-group">
                 <label for="TeacherSchool">就职学校</label>
@@ -39,7 +39,7 @@
             <div class="form-group">
                 <label for="TeacherClass">授课班级</label>
                 <select id="TeacherClass" multiple v-model="tClass">
-                    <option v-for="item in classList" :key="item.id" :value="item.id">{{item.name}}</option>
+                    <option v-for="item in classList" :key="item.id" :value="item.id">{{item.className}}</option>
                 </select>
                 <span>{{tcerr}}</span>
             </div>
@@ -52,7 +52,7 @@
             </div> -->
             <div class="form-group">
                 <label for="teacherGraduated">毕业院校</label>
-                <input type="number" id="teacherGraduated" v-model="tGraduated" placeholder="请输入教师的毕业院校">
+                <input type="text" id="teacherGraduated" v-model="tGraduated" placeholder="请输入教师的毕业院校">
             </div>
             <div class="form-group">
                 <label for="teachTime">教龄</label>
@@ -111,7 +111,7 @@ export default {
             const data = {
                 teacherName: this.tName,
                 gender: this.tGender,
-                age: this,tAge,
+                age: this.tAge,
                 phone: this.tPhone,
                 address: this.tAddress,
                 // level: this.tLevel,
@@ -121,22 +121,9 @@ export default {
                 teachTime: this.tTime
             }
 
-            this.$http.post('/teacher/addTeacher.json', data).then(response => {
+            this.$http.post('/teacher/addTeacher.json', data, {emulateJSON: false}).then(response => {
                 const body = response.body;
                 if(body.code == 200) {
-                    tName = '';
-                    tGender = 1;
-                    tAge = '';
-                    tPhone = '';
-                    tAddress = '';
-                    tLevel = '';
-                    tClass = '';
-                    tSchool = '';
-                    tGraduated = '';
-                    tTime = '';
-                    tnerr = '';
-                    tperr = '';
-                    err = '';
                     this.$router.push({path: '/teacher'});
                 } else {
                     this.err = body.description;
@@ -146,7 +133,7 @@ export default {
             })
         },
         getClassList: function() {
-            this.$http.get('/grade/findGradeClass.json?sid=' + this.tSchool).then(response => {
+            this.$http.get('/class/findGradeClass.json?sid=' + this.tSchool).then(response => {
                 const body = response.body;
                 if(body.code == 200) {
                     this.classList = body.detail;

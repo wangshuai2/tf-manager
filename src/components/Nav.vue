@@ -53,7 +53,11 @@
 export default {
   methods: {
       logOut: function() {
-          
+          this.$http.post('/logout.json').then(response => {
+              if(response.body.code == 200) {
+                  this.$router.push({path: '/login'});
+              }
+          })
       }
   }
 }
@@ -76,6 +80,16 @@ export default {
         text-align: center;
         color: #fff;
         font-size: 16px;
+        position: relative;
+    }
+    .top-nav a {
+        display: inline-block;
+        font-size: 12px;
+        color: #fff;
+        text-decoration: none;
+        position: absolute;
+        top: 15px;
+        right: 0;
     }
     .sidebar {
         width: 180px;

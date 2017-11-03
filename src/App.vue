@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <nav-view></nav-view>
+    <nav-view v-if="url"></nav-view>
     <router-view/>
   </div>
 </template>
@@ -10,6 +10,11 @@ import Nav from "./components/Nav";
 
 export default {
   name: "app",
+  data() {
+      return {
+          url: this.$route.fullPath.indexOf('/login') == -1
+      }
+  },
   components: {
     "nav-view": Nav
   }
