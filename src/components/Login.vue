@@ -64,7 +64,8 @@ export default {
     .login {
         width: 100%;
         height: 100%;
-        background: url('../assets/1508912127240-1.jpg') no-repeat center center;
+        /* background: url('../assets/1508912127240-1.jpg') no-repeat center center; */
+        background-color: #fff;
         background-size: cover;
         position: fixed;
         top: 0;
