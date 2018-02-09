@@ -23,6 +23,10 @@ import Class from '../components/class/Class'
 import ClassAdd from '../components/class/Class-add'
 import ClassEdit from '../components/class/Class-edit'
 
+import Question from '../components/question/Question'
+import QuestionAdd from '../components/question/Question-add'
+import QuestionEdit from '../components/question/Question-edit'
+
 export default [
     {
         path: '/login',
@@ -149,25 +153,25 @@ export default [
      * 年级部分操作路由
      */
     {
-        path: '/class',
-        name: 'Class',
-        component: Class,
+        path: '/question',
+        name: 'Question',
+        component: Question,
         meta: {
             requireAuth: true
         }
     },
     {
-        path: '/class/add',
-        name: 'AddClass',
-        component: ClassAdd,
+        path: '/question/add',
+        name: 'AddQuestion',
+        component: QuestionAdd,
         meta: {
             requireAuth: true
         }
     },
     {
-        path: '/class/edit/:id',
-        name: 'EditClass',
-        component: ClassEdit,
+        path: '/question/edit/:id',
+        name: 'EditQuestion',
+        component: QuestionEdit,
         meta: {
             requireAuth: true
         }

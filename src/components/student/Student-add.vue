@@ -30,8 +30,8 @@
                 <input type="text" id="studentAddress" v-model="sAddress" placeholder="请输入地址">
             </div>
             <div class="form-group">
-                <label for="classId"><code>*</code>所在学校</label>
-                <select id="classId" v-model="schoolId" @change="getClassBySchoolId">
+                <label for="schoolId"><code>*</code>所在学校</label>
+                <select id="schoolId" v-model="schoolId" @change="getClassBySchoolId">
                     <option value="0">请选择学校</option>
                     <option v-for="school in schoolList" :key="school.id" :value="school.id">{{school.name}}</option>
                 </select>

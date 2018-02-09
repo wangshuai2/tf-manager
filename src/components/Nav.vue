@@ -45,6 +45,13 @@
                     <li><a href="/#/class/add">添加班级</a></li>
                 </ul>
             </div>
+            <div>
+                <span>问答管理</span>
+                <ul>
+                    <li><a href="/#/question">问题列表</a></li>
+                    <li><a href="/#/question/add">添加问题</a></li>
+                </ul>
+            </div>
         </div>
     </div>
 </template>
