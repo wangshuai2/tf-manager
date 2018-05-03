@@ -46,7 +46,7 @@ export default [
         }
     },
     {
-        path: '/school/add',
+        path: '/school_add',
         name: 'AddSchool',
         component: SchoolAdd,
         meta: {
@@ -74,7 +74,7 @@ export default [
         }
     },
     {
-        path: '/teacher/add',
+        path: '/teacher_add',
         name: 'AddTeacher',
         component: TeacherAdd,
         meta: {
@@ -103,7 +103,7 @@ export default [
         }
     },
     {
-        path: '/student/add',
+        path: '/student_add',
         name: 'AddStudent',
         component: StudentAdd,
         meta: {
@@ -132,7 +132,7 @@ export default [
         }
     },
     {
-        path: '/grade/add',
+        path: '/grade_add',
         name: 'AddGrade',
         component: GradeAdd,
         meta: {
@@ -161,7 +161,7 @@ export default [
         }
     },
     {
-        path: '/question/add',
+        path: '/question_add',
         name: 'AddQuestion',
         component: QuestionAdd,
         meta: {

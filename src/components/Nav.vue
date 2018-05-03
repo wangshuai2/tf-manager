@@ -1,57 +1,25 @@
 <template>
     <div class="nav">
         <div class="top-nav">
-            <div class="logo">
-                天赋音乐管理后台
-            </div>
-            <a href="javascript:void(0)" @click="logOut">退出登录</a>
+            <el-menu :default-active="1" class="el-menu-demo" mode="horizontal" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                <el-menu-item index="1">处理中心</el-menu-item>
+            </el-menu>
         </div>
         <div class="sidebar">
-            <div>
-                <a href="/">首页</a>
-            </div>
-            <div>
-                <span>学校管理</span>
-                <ul>
-                    <li><a href="/#/school">学校列表</a></li>
-                    <li><a href="/#/school/add">添加学校</a></li>
-                </ul>
-            </div>
-            <div>
-                <span>教师管理</span>
-                <ul>
-                    <li><a href="/#/teacher">教师列表</a></li>
-                    <li><a href="/#/teacher/add">添加教师</a></li>
-                </ul>
-            </div>
-            <div>
-                <span>学生管理</span>
-                <ul>
-                    <li><a href="/#/student">学生列表</a></li>
-                    <li><a href="/#/student/add">添加学生</a></li>
-                </ul>
-            </div>
-            <div>
-                <span>年级管理</span>
-                <ul>
-                    <li><a href="/#/grade">年级列表</a></li>
-                    <li><a href="/#/grade/add">添加年级</a></li>
-                </ul>
-            </div>
-            <div>
-                <span>班级管理</span>
-                <ul>
-                    <li><a href="/#/class">班级列表</a></li>
-                    <li><a href="/#/class/add">添加班级</a></li>
-                </ul>
-            </div>
-            <div>
-                <span>问答管理</span>
-                <ul>
-                    <li><a href="/#/question">问题列表</a></li>
-                    <li><a href="/#/question/add">添加问题</a></li>
-                </ul>
-            </div>
+            <el-row class="tac">
+                <el-col :span="3">
+                    <el-menu default-active="1" class="el-menu-vertical-demo" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b">
+                        <el-submenu index="1">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>学校管理</span>
+                            </template>
+                            <el-menu-item index="1-1" route="{name: 'Teacher'}">学校列表</el-menu-item>
+                            <el-menu-item index="1-2"><a href="/#/school/add">添加学校</a></el-menu-item>
+                        </el-submenu>
+                    </el-menu>
+                </el-col>
+            </el-row>
         </div>
     </div>
 </template>
@@ -59,87 +27,17 @@
 <script>
 export default {
   methods: {
-      logOut: function() {
-          this.$http.post('/logout.json').then(response => {
-              if(response.body.code == 200) {
-                  this.$router.push({path: '/login'});
-              }
-          })
-      }
+    logOut: function() {
+      this.$http.post("/logout.json").then(response => {
+        if (response.body.code == 200) {
+          this.$router.push({ path: "/login" });
+        }
+      });
+    }
   }
-}
+};
 </script>
 
 <style scoped>
-    .nav {}
-    .top-nav {
-        width: 100%;
-        height: 50px;
-        background: #333744;
-        position: fixed;
-        top: 0;
-        left: 0;
-    }
-    .top-nav .logo {
-        width: 500px;
-        line-height: 50px;
-        margin: 0 auto;
-        text-align: center;
-        color: #fff;
-        font-size: 16px;
-        position: relative;
-    }
-    .top-nav a {
-        display: inline-block;
-        font-size: 12px;
-        color: #fff;
-        text-decoration: none;
-        position: absolute;
-        top: 15px;
-        right: 0;
-    }
-    .sidebar {
-        width: 180px;
-        height: 100%;
-        padding-top: 60px;
-        box-sizing: border-box;
-        background: #333744;
-        position: fixed;
-        top:0;
-        left: 0;
-        z-index: 5;
-    }
-    .sidebar div {}
-    .sidebar div>span,
-    .sidebar div>a {
-        display: block;
-        width: 100%;
-        height: 40px;
-        line-height: 40px;
-        padding-left: 30px;
-        box-sizing: border-box;
-        color: #fff;
-        font-size: 14px;
-        background: #42485B;
-    }
-    .sidebar div>a {
-        cursor: pointer;
-    }
-    .sidebar ul {
-        list-style: none;
-    }
-    .sidebar li {
-        height: 40px;
-        line-height: 40px;
-        padding-left: 50px;
-        box-sizing: border-box;
-    }
-    .sidebar a {
-        color: #fff;
-        font-size: 12px;
-        outline: none;
-        transition: none;
-        text-decoration: none;
-    }
 </style>
 

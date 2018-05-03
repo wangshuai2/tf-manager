@@ -1,22 +1,94 @@
 <template>
   <div id="app">
-    <nav-view v-if="url"></nav-view>
-    <router-view/>
+    <!-- <nav-view v-if="url"></nav-view>
+     -->
+    <el-row :gutter="24">
+        <div class="top-nav" style="width:100%;height:70px;line-height:70px;text-align:center;color:#fff;background-color:#545c64">
+            天赋音乐管理后台
+        </div>
+    </el-row>
+    <el-row :gutter="20">
+        <el-col :span="4">
+            <el-menu :default-active="activeNav" mode="vertical" class="manage-link" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
+                <el-submenu index="1">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>学校管理</span>
+                    </template>
+                    <el-menu-item index="/school">学校列表</el-menu-item>
+                    <el-menu-item index="/school_add">添加学校</el-menu-item>
+                </el-submenu>
+                <el-submenu index="2">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>教师管理</span>
+                    </template>
+                    <el-menu-item index="/teacher" route="/teacher">教师列表</el-menu-item>
+                    <el-menu-item index="/teacher_add" route="/teacher_add">添加教师</el-menu-item>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>班级管理</span>
+                    </template>
+                    <el-menu-item index="/class" route="/class">班级列表</el-menu-item>
+                    <el-menu-item index="/class_add" route="/class_add">添加班级</el-menu-item>
+                </el-submenu>
+                <el-submenu index="4">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>学生管理</span>
+                    </template>
+                    <el-menu-item index="/student" route="/student">学生列表</el-menu-item>
+                    <el-menu-item index="/student_add" route="/student_add">添加学生</el-menu-item>
+                </el-submenu>
+                <el-submenu index="5">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>年级管理</span>
+                    </template>
+                    <el-menu-item index="/grade" route="/grade">年级列表</el-menu-item>
+                    <el-menu-item index="/grade_add" route="/grade_add">添加年级</el-menu-item>
+                </el-submenu>
+                <el-submenu index="6">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>问答管理</span>
+                    </template>
+                    <el-menu-item index="/question" route="/question">问题列表</el-menu-item>
+                    <el-menu-item index="/question_add" route="question_add">添加问题</el-menu-item>
+                </el-submenu>
+            </el-menu>
+        </el-col>
+        <el-col :span="14" :offset="2">
+            <router-view/>
+        </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import Nav from "./components/Nav";
+// import Nav from "./components/Nav";
 
 export default {
   name: "app",
   data() {
       return {
+          activeNav: this.$route.path,
           url: this.$route.fullPath.indexOf('/login') == -1
       }
   },
   components: {
-    "nav-view": Nav
+    // "nav-view": Nav
+  },
+  methods: {
+    logOut: function() {
+      this.$http.post("/logout.json").then(response => {
+        if (response.body.code == 200) {
+          this.$router.push({ path: "/login" });
+        }
+      });
+    }
   }
 };
 </script>
@@ -33,8 +105,15 @@ input[type="date"] {
 }
 
 #app {
-  padding: 70px 30px 50px 200px;
+  /* padding: 70px 30px 50px 200px; */
   box-sizing: border-box;
+}
+.manage-link a {
+    color: #fff;
+    text-decoration: none;
+}
+.manage-link li.is-active a {
+    color: rgb(255, 208, 75);
 }
 .list {
   width: 100%;

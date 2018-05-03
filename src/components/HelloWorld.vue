@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>你永远不知道这个页面里面藏了多少个Hello World！</h1>
+    <h1></h1>
   </div>
 </template>
 
@@ -11,22 +11,4 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1,
-h2 {
-  font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
-}
 </style>
