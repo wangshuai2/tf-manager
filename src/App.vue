@@ -58,6 +58,22 @@
                     <el-menu-item index="/question" route="/question">问题列表</el-menu-item>
                     <el-menu-item index="/question_add" route="question_add">添加问题</el-menu-item>
                 </el-submenu>
+                <el-submenu index="7">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>课件上传</span>
+                    </template>
+                    <el-menu-item index="/course" route="/course">课件列表</el-menu-item>
+                    <el-menu-item index="/course_add" route="course_add">上传课件</el-menu-item>
+                </el-submenu>
+                <el-submenu index="8">
+                    <template slot="title">
+                        <i class="el-icon-location"></i>
+                        <span>MusicXML</span>
+                    </template>
+                    <!-- <el-menu-item index="/musicxml" route="/musicxml">MusicXML列表</el-menu-item> -->
+                    <el-menu-item index="/musicxml_add" route="musicxml_add">上传MusicXML</el-menu-item>
+                </el-submenu>
             </el-menu>
         </el-col>
         <el-col :span="14" :offset="2">

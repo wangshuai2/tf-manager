@@ -27,6 +27,14 @@ import Question from '../components/question/Question'
 import QuestionAdd from '../components/question/Question-add'
 import QuestionEdit from '../components/question/Question-edit'
 
+import Course from '../components/course/Course'
+import CourseAdd from '../components/course/Course-add'
+import CourseEdit from '../components/course/Course-edit'
+
+import MusicXML from '../components/musicxml/MusicXML'
+import MusicXMLAdd from '../components/musicxml/MusicXML-add'
+import MusicXMLEdit from '../components/musicxml/MusicXML-edit'
+
 export default [
     {
         path: '/login',
@@ -150,7 +158,36 @@ export default [
     
 
     /**
-     * 年级部分操作路由
+     * 班级部分操作路由
+     */
+    {
+        path: '/class',
+        name: 'Class',
+        component: Class,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/class_add',
+        name: 'AddClass',
+        component: ClassAdd,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/class/edit/:id',
+        name: 'EditClass',
+        component: ClassEdit,
+        meta: {
+            requireAuth: true
+        }
+    },
+    
+
+    /**
+     * 问答操作路由
      */
     {
         path: '/question',
@@ -172,6 +209,64 @@ export default [
         path: '/question/edit/:id',
         name: 'EditQuestion',
         component: QuestionEdit,
+        meta: {
+            requireAuth: true
+        }
+    },
+    
+
+    /**
+     * 课件部分操作路由
+     */
+    {
+        path: '/course',
+        name: 'Course',
+        component: Course,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/course_add',
+        name: 'AddCourse',
+        component: CourseAdd,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/course/edit/:id',
+        name: 'EditCourse',
+        component: CourseEdit,
+        meta: {
+            requireAuth: true
+        }
+    },
+    
+
+    /**
+     * musicxml部分操作路由
+     */
+    {
+        path: '/musicxml',
+        name: 'MusicXML',
+        component: MusicXML,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/musicxml_add',
+        name: 'AddMusicXML',
+        component: MusicXMLAdd,
+        meta: {
+            requireAuth: true
+        }
+    },
+    {
+        path: '/musicxml/edit/:id',
+        name: 'EditMusicXML',
+        component: MusicXMLEdit,
         meta: {
             requireAuth: true
         }
