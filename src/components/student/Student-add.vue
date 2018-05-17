@@ -63,8 +63,8 @@ export default {
         return {
             schoolList: [],
             classList: [],
-            schoolId: '0',
-            classId: '0',
+            schoolId: '',
+            classId: '',
             sName: '',
             sPhone: '',
             sGender: 1,
@@ -103,7 +103,8 @@ export default {
                 age: this.sAge,
                 address: this.sAddress,
                 classId: this.cId,
-                entranceTime: this.eTime
+                entranceTime: this.eTime,
+                schoolId: this.schoolId
             }
 
             this.$http.post('/student/addStu.json', data, {emulateJSON: false}).then(response => {

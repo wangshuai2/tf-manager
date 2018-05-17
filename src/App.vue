@@ -7,8 +7,8 @@
             天赋音乐管理后台
         </div>
     </el-row>
-    <el-row :gutter="20">
-        <el-col :span="4">
+    <el-container>
+        <el-aside width="220px">
             <el-menu :default-active="activeNav" mode="vertical" class="manage-link" background-color="#545c64" text-color="#fff" active-text-color="#ffd04b" router>
                 <el-submenu index="1">
                     <template slot="title">
@@ -75,11 +75,12 @@
                     <el-menu-item index="/musicxml_add" route="musicxml_add">上传MusicXML</el-menu-item>
                 </el-submenu>
             </el-menu>
-        </el-col>
-        <el-col :span="14" :offset="2">
+        </el-aside>
+        <el-main>
+            
             <router-view/>
-        </el-col>
-    </el-row>
+        </el-main>
+    </el-container>
   </div>
 </template>
 

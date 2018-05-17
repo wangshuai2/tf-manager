@@ -63,14 +63,14 @@ export default {
         return {
             schoolList: [],
             classList: [],
-            schoolId: '0',
-            classId: '0',
+            schoolId: '',
+            classId: '',
             sName: '',
             sPhone: '',
             sGender: 1,
             sAge: '',
             sAddress: '',
-            cId: '0',
+            cId: '',
             eTime: '',
             snerr: '',
             smerr: '',
@@ -97,14 +97,15 @@ export default {
             }
 
             const data = {
-                stuId: this.$routr.params.id,
+                stuId: this.$route.params.id,
                 stuName: this.sName,
                 phone: this.sPhone,
                 gender: this.sGender,
                 age: this.sAge,
                 address: this.sAddress,
                 classId: this.cId,
-                entranceTime: this.eTime
+                entranceTime: this.eTime,
+                schoolId: this.schoolId
             }
 
             this.$http.post('/student/updateStu.json', data, {emulateJSON: false}).then(response => {
